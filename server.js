@@ -40,6 +40,7 @@ const widgetsRoutes = require("./routes/widgets");
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
+
 // Note: mount other resources here, using the same pattern above
 
 
