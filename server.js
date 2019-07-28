@@ -50,6 +50,10 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+app.get("/polls", (request, response ) => {
+  response.render("index");
+})
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
