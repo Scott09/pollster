@@ -1,0 +1,35 @@
+
+DROP TABLE IF EXISTS voters;
+DROP TABLE IF EXISTS polls;
+DROP TABLE IF EXISTS choices;
+DROP TABLE IF EXISTS votes;
+
+
+CREATE TABLE voters (
+  id SERIAL PRIMARY KEY NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  polls_id VARCHAR(255) NOT NULL
+)
+
+CREATE TABLE polls (
+  id SERIAL PRIMARY KEY NOT NULL,
+  owner_name VARCHAR(255) NOT NULL REFERENCES users(id),
+  owner_email VARCHAR(255) NOT NULL,
+  admin_link VARCHAR(255),
+  submit_link VARCHAR(255),
+  question VARCHAR(8000)
+);
+
+CREATE TABLE choices (
+  id SERIAL PRIMARY KEY NOT NULL,
+  poll_id INTEGER REFERENCES polls(id) ON DELETE CASCADE,
+  description VARCHAR(8000),
+  title INTEGER(255)
+
+);
+CREATE TABLE votes(
+  id SERIAL PRIMARY KEY NOT NULL,
+  voter_id VARCHAR(255) NOT NULL REFERENCES voters(id),
+  choice_id VARCHAR(255) NOT NULL REFERENCES choices(id),
+  rank INTEGER(255)
+);
