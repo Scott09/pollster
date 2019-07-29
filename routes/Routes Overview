@@ -1,15 +1,26 @@
-GET /poll # get the list of polls
-POST /poll #creates a new poll
+CREATE SCREEN
 GET /poll/new # show the page to create a new poll
-GET /poll/:id # show a poll
+POST /poll/new # creates a new poll
+ - after, redirect them to thank you page OR popup WITH button redirects to submission
+
+SUBMIT SCREEN
+ GET /vote/:id
+ - Link for submission for that poll
+ POST /vote/:id
+ - Posts a submission for that poll
+ GET /vote/thankyou
+ - Shows page thanking user for submission and has button "click here for poll results"
+
+RESULTS PAGE
+GET /results/:id # show a poll's results page
+
+ADMIN PAGE
+GET /admin/:id # show's a poll's results page but with name's displayed
+- Names are vertically stacked, when you click on a name, responsive table drops down (like in Tweeter with compose tweet button)
+
+OPTIONAL FEATURES FOR LATER DISCUSSION
 GET /poll/;id/edit # show the page to edit an existing poll
 PUT/PATCH/POST /poll/:id # updates a poll
 DELETE /poll/:id # deletes a poll
 
-GET /poll/:poll_id/votes # admin only
-GET /poll/:poll_id/votes/:id # show an indivdual vote
-GET /poll/:poll_id/votes/new # show page to vote
-POST /poll/:poll_id/votes # register a vote
-GET /poll/:poll_id/votes/:id/edit # would show page to allow user to change their vote (don't want, I think)
-PUT/PATCH/POST /poll/:poll_id/votes/:id # page that handles updating an existing vote
-DELETE /poll/:poll_id/votes/:id # deletes an existing vote
+
