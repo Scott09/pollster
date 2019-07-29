@@ -24,6 +24,7 @@ const addPoll = function(poll) {
     })
   })
 }
+
 exports.addPoll = addPoll;
 
 
