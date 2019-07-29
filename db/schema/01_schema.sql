@@ -5,29 +5,29 @@ DROP TABLE IF EXISTS votes CASCADE;
 
 CREATE TABLE polls (
   id SERIAL PRIMARY KEY NOT NULL,
-  owner_name VARCHAR(255) NOT NULL,
-  owner_email VARCHAR(255) NOT NULL,
-  admin_link VARCHAR(255),
-  submission_link VARCHAR(255),
-  question VARCHAR(8000)
+  creator_name VARCHAR(255) NOT NULL,
+  creator_email VARCHAR(255) NOT NULL,
+  admin_url VARCHAR(255),
+  submission_url VARCHAR(255),
+  question VARCHAR(255)
 );
 
 CREATE TABLE voters (
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR(255) NOT NULL,
-  polls_id INTEGER NOT NULL REFERENCES polls(id)
+  poll_id INTEGER NOT NULL REFERENCES polls(id)
 );
 
 CREATE TABLE choices (
   id SERIAL PRIMARY KEY NOT NULL,
   poll_id INTEGER REFERENCES polls(id),
-  description VARCHAR(8000),
+  description TEXT,
   title VARCHAR(255)
-
 );
-CREATE TABLE votes (
+
+CREATE TABLE voter_choices (
   id SERIAL PRIMARY KEY NOT NULL,
   voter_id INTEGER NOT NULL REFERENCES voters(id),
   choice_id INTEGER NOT NULL REFERENCES choices(id),
-  rank INTEGER
+  choice_rank INTEGER
 );
