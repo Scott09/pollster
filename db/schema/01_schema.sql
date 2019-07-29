@@ -7,8 +7,6 @@ CREATE TABLE polls (
   id SERIAL PRIMARY KEY NOT NULL,
   creator_name VARCHAR(255) NOT NULL,
   creator_email VARCHAR(255) NOT NULL,
-  admin_url VARCHAR(255),
-  submission_url VARCHAR(255),
   question VARCHAR(255)
 );
 
