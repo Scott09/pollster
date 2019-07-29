@@ -1,0 +1,15 @@
+GET /poll # get the list of polls
+POST /poll #creates a new poll
+GET /poll/new # show the page to create a new poll
+GET /poll/:id # show a poll
+GET /poll/;id/edit # show the page to edit an existing poll
+PUT/PATCH/POST /poll/:id # updates a poll
+DELETE /poll/:id # deletes a poll
+
+GET /poll/:poll_id/votes # admin only
+GET /poll/:poll_id/votes/:id # show an indivdual vote
+GET /poll/:poll_id/votes/new # show page to vote
+POST /poll/:poll_id/votes # register a vote
+GET /poll/:poll_id/votes/:id/edit # would show page to allow user to change their vote (don't want, I think)
+PUT/PATCH/POST /poll/:poll_id/votes/:id # page that handles updating an existing vote
+DELETE /poll/:poll_id/votes/:id # deletes an existing vote
