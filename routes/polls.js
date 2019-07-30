@@ -10,5 +10,7 @@ module.exports = (db) => {
     response.redirect("results");
   });
 
+  router.get("/:id", )
+
   return router;
 };

@@ -1,3 +1,4 @@
+
 INSERT INTO polls (creator_name, creator_email,question) VALUES ('Alice','jiadanwang@gmail.com', 'movie?');
 
 INSERT INTO voters(name, poll_id) VALUES ('Scott','1');
