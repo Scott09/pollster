@@ -38,7 +38,6 @@ module.exports = (db) => {
           if(error) {
             throw error;
           }
-          console.log(results.rows)
           response.render('results', {
             voterChoices: results.rows
           });
