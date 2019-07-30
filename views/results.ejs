@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/ranking_page.css" type="text/css" >
+
   <!-- BOOTSTRAP 4 CSS  -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -31,20 +33,20 @@
     <%- include header.ejs %>
 
 
-    <p>hello ,result page haha</p>
-
-    <table>
+    <p class= "hello_result">hello, result page haha</p>
+    <div class="results_table">
+    <table >
         <thead>
-          <th scope="col">Ranking</th>
-          <th scope="col">Choices</th>
-          <th scope="col">Description</th>
+          <th scope="col">Ranking </th>
+          <th scope="col">Choices </th>
+          <th scope="col">Description </th>
 
         </thead>
         <tbody>
 
               <% for(let i = 0; i < voterChoices.length; i++) { %>
                 <tr>
-                  <td class = "ranking"><%= i  + 1%></td>
+                  <td class = "ranking"><%= i + 1%></td>
                   <td class = "title"><%= voterChoices[i].title %></td>
                   <td class = "description"><%= voterChoices[i].description %></td>
 
@@ -53,8 +55,8 @@
 
 
         </tbody>
-      </table>
-      <div><%= voterChoices.numbersOfVoters %></div>
+      </table></div>
+      <b class="voter_number">numbers of sumbission <%= voterChoices[0].voternumber %></b>
 
 
 </body>
