@@ -1,0 +1,12 @@
+<%- include header.ejs %>
+<div class="row">
+<h1><%= poll.choices.length %><h1>
+  <%  for (let choice of poll.choices){ %>
+  <div class="card">
+    <div class="card-body">
+      <div><%= choice.title %></div>
+      <small><%= choice.description %></small>
+    </div>
+  </div>
+  <% } %>
+</div>
