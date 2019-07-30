@@ -1,14 +1,4 @@
-// const {pool} = require ('pg');
-
-// const pool = new pool ({
-//   user: 'labber',
-//   host: 'localhost',
-//   password: 'password',
-//   database: 'midterm'
-// })
-
-// pool.connect();
-
+const pool = require('../lib/db');
 
 //Links???
 const addPoll = function(poll) {
@@ -17,11 +7,11 @@ const addPoll = function(poll) {
       `INSERT INTO polls (owner_name, owner_email, question)
       VALUES (${poll.owner_name},${poll.owner_email},${polls.question})
       RETURNING *;`)
-    .then((result) => {
-      resolve(result.row[0])
-    })
-  })
-}
+      .then((result) => {
+        resolve(result.row[0]);
+      });
+  });
+};
 
 exports.addPoll = addPoll;
 
@@ -34,10 +24,10 @@ const addVoter = function(voter) {
         VALUES (${voter.name}, ${voter.polls_id})
       RETURNING *;`)
       .then((result) => {
-        resolve(result.row[0])
-      })
-  })
-}
+        resolve(result.row[0]);
+      });
+  });
+};
 exports.addVoter = addVoter;
 
 const addVote = function(vote) {
@@ -47,10 +37,10 @@ const addVote = function(vote) {
       VALUES (${vote.voter_id}, ${vote.choice_id},${vote.rank})
       RETURNING *;`)
       .then((result) => {
-        resolve(result.row[0])
-      })
-  })
-}
+        resolve(result.row[0]);
+      });
+  });
+};
 
 exports.addVote = addVote;
 
@@ -61,9 +51,23 @@ const addChoice = function(choice) {
       VALUES (${choice.poll_id}, ${choice.description},${choice.title})
       RETURNING *;`)
       .then((result) => {
-        resolve(result.row[0])
-      })
-  })
-}
+        resolve(result.row[0]);
+      });
+  });
+};
 
 exports.addChoice = addChoice;
+
+const getPollAndChoicesByID = function(id) {
+  return pool.query(`SELECT * FROM polls WHERE id = 1`)
+    .then((poll) => {
+      return pool.query(`SELECT * FROM choices WHERE poll_id = 1`)
+        .then(choices => {
+        // {choices} == {choices: choices}
+          console.log(poll.row);
+          return Object.assign({}, poll.rows[0], { choices: choices.rows });
+        });
+    });
+};
+
+exports.getPollAndChoicesByID = getPollAndChoicesByID;
