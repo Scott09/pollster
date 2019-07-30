@@ -2,13 +2,16 @@ const express = require('express');
 const router  = express.Router();
 
 module.exports = (db) => {
-  router.get("/", (request, response) => {
+  router.get("/new", (request, response) => {
     response.render("index");
   });
-  router.post("/", (request, response) => {
+  router.post("/new", (request, response) => {
     console.log("Posting on polls");
-    response.redirect("results");
+    response.render("index");
   });
+
+
+  
 
   return router;
 };
