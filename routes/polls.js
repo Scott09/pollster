@@ -26,15 +26,15 @@ module.exports = (db) => {
         if (error) {
           throw error;
         }
-        db.query(insertChoice, [choicePollId, 'description', request.body.question1], (error, results) => {
+        db.query(insertChoice, [choicePollId, request.body.descriptionone, request.body.question1], (error, results) => {
           if (error) {
             throw error;
           }
-          db.query(insertChoice, [choicePollId, 'description2', request.body.question2], (error, results) => {
+          db.query(insertChoice, [choicePollId, request.body.descriptiontwo, request.body.question2], (error, results) => {
             if (error) {
               throw error;
             } 
-            db.query(insertChoice, [choicePollId, 'description3', request.body.question3], (error, results) => {
+            db.query(insertChoice, [choicePollId, request.body.descriptionthree, request.body.question3], (error, results) => {
               if (error) {
                 throw error;
               }
