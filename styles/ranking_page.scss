@@ -17,3 +17,24 @@
   justify-content: center;
   margin-top: 20px;
   }
+
+  table,  td {
+    border: 1px solid black;
+    padding: 15px;
+    width:70%;
+
+  }
+
+table tr:nth-child(even) {
+    background-color: #eee;
+  }
+table tr:nth-child(odd) {
+   background-color: #fff;
+  }
+
+table th {
+    height :20px;
+    color: white;
+    background-color: black;
+  }
+

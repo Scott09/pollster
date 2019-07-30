@@ -46,9 +46,9 @@
 
               <% for(let i = 0; i < voterChoices.length; i++) { %>
                 <tr>
-                  <td class = "ranking"><%= i + 1%></td>
-                  <td class = "title"><%= voterChoices[i].title %></td>
-                  <td class = "description"><%= voterChoices[i].description %></td>
+                  <td class = "ranking" style="width:30%;" ><%= i + 1%></td>
+                  <td class = "title" style="width:30%;"><%= voterChoices[i].title %></td>
+                  <td class = "description" style="width:40%;"><%= voterChoices[i].description %></td>
 
                 </tr>
               <% } %>
@@ -56,8 +56,46 @@
 
         </tbody>
       </table></div>
-      <b class="voter_number">numbers of sumbission <%= voterChoices[0].voternumber %></b>
+      <b class="voter_number">numbers of sumbission <%= voterNumber %></b>
+      <a href="https://www.facebook.com"><img src="https://img.icons8.com/dusk/64/000000/facebook-new--v2.png"></a>
+      <a href="https://www.twitter.com"><img src="https://img.icons8.com/dusk/64/000000/twitter-circled.png"></a>
+      <img src="https://img.icons8.com/dusk/64/000000/open-in-browser.png">
+      <div>
+        <input type="button" value="Copy Url" onclick="Copy();" />
+        <br />
+        Paste: <textarea rows="1" cols="30"></textarea>
+       </div>
 
+
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+          google.charts.load("current", {packages:["corechart"]});
+          google.charts.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var array = [[choice,vote]];
+            let array2 = [];
+           for(let i = 0; i < voterChoices.length; i++) {
+             array2 = [voterChoices[i].title,voterChoices[i].rank]
+             console.log(array2);
+             array.push(array2);
+           }return array;
+
+            var data = google.visualization.arrayToDataTable(array);
+
+            var options = {
+              title: 'Ranking',
+              is3D: true,
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+            chart.draw(data, options);
+          }
+        </script>
+
+
+        <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
 
 </body>
 </html>
+
+
