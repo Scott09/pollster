@@ -1,4 +1,5 @@
-INSERT INTO polls (creator_name, creator_email,admin_url,submission_url,question) VALUES ('Alice','jiadanwang@gmail.com','localhost:8080/aaaaaa','localhost:8080/bbbbbb', 'movie?');
+
+INSERT INTO polls (creator_name, creator_email,question) VALUES ('Alice','jiadanwang@gmail.com', 'movie?');
 
 INSERT INTO voters(name, poll_id) VALUES ('Scott','1');
 

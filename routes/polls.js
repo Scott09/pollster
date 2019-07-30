@@ -10,8 +10,5 @@ module.exports = (db) => {
     response.render("index");
   });
 
-
-  
-
   return router;
 };
