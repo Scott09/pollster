@@ -1,6 +1,11 @@
 <%- include header.ejs %>
-<div class="row">
-<h1><%= poll.choices.length %><h1>
+ <script>
+  $( function() {
+    $( "#sortable" ).sortable();
+    $( "#sortable" ).disableSelection();
+  } );
+  </script>
+<div class="row" id="sortable">
   <%  for (let choice of poll.choices){ %>
   <div class="card">
     <div class="card-body">
@@ -10,3 +15,6 @@
   </div>
   <% } %>
 </div>
+<button type="button" class="btn btn-primary">Submit</button>
+</body>
+</html>
