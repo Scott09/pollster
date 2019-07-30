@@ -1,15 +1,13 @@
-const {pool} = require ('pg');
+// const {pool} = require ('pg');
 
-const pool = new pool ({
-  user: 'labber',
-  host: 'localhost',
-  password: 'password',
-  database: 'midterm'
-})
+// const pool = new pool ({
+//   user: 'labber',
+//   host: 'localhost',
+//   password: 'password',
+//   database: 'midterm'
+// })
 
-pool.connect();
-
-// getVotesBy
+// pool.connect();
 
 
 //Links???
