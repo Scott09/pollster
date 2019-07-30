@@ -59,12 +59,13 @@ const addChoice = function(choice) {
 exports.addChoice = addChoice;
 
 const getPollAndChoicesByID = function(id) {
-  return pool.query(`SELECT * FROM polls WHERE id = $1`, [id])
+  return pool.query(`SELECT * FROM polls WHERE id = 1`)
     .then((poll) => {
-      return pool.query(`SELECT * FROM choices WHERE poll_id = $1`, [poll.id])
+      return pool.query(`SELECT * FROM choices WHERE poll_id = 1`)
         .then(choices => {
         // {choices} == {choices: choices}
-          return Object.assign({}, poll.row[0], { choices });
+          console.log(poll.row);
+          return Object.assign({}, poll.rows[0], { choices: choices.rows });
         });
     });
 };
