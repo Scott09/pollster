@@ -1,15 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const {Client} = require ('pg');
-
-const client = new Client({
-  user: 'labber',
-  host: 'localhost',
-  password: 'password',
-  database: 'midterm'
-})
-
-client.connect();
 
 module.exports = (db) => {
   router.get("/", (request, response)=>{
@@ -17,7 +7,7 @@ module.exports = (db) => {
   });
 
   router.get("/:id", (request, response) => {
-    client.query(
+    db.query(
       `SELECT choices.title,choices.description, count(voters.poll_id) as voterNumber
         FROM  voter_choices
         JOIN choices ON choices.id = voter_choices.choice_id
@@ -30,8 +20,19 @@ module.exports = (db) => {
             throw error;
 
           }
-          response.render('results', {
-            voterChoices: results.rows
+          db.query(`SELECT count(voters.name) as count
+          FROM voters
+          JOIN polls
+          ON polls.id = voters.poll_id
+          WHERE polls.id = $1`, [request.params.id], (error, data) => {
+            if (error) {
+              throw error;
+            }
+            response.render('results', {
+              voterChoices: results.rows,
+              voterNumber: data.rows[0].count
+          })
+
           });
         }
     )
@@ -39,6 +40,17 @@ module.exports = (db) => {
 
   return router;
 }
+
+
+
+function Copy()
+      {
+          var Url = document.createElement("textarea");
+          Url.innerHTML = window.location.href;
+          Copied = Url.createTextRange();
+          Copied.execCommand("Copy");
+      }
+exports.Copy = Copy;
 
 
 
