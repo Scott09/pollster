@@ -26,21 +26,27 @@ module.exports = (db) => {
 
   router.get("/:id", (request, response) => {
     client.query(
-      `SELECT choices.title, voter_choices.choice_rank , choices.description
+      `SELECT choices.title,choices.description, count(voters.*) as numberOfVoters
         FROM  voter_choices
         JOIN choices ON choices.id = voter_choices.choice_id
         JOIN polls ON polls.id = choices.poll_id
-        WHERE polls.id = $1`, [request.params.id],(error, results) => {
+        JOIN voters ON polls.id = voters.poll_id
+
+        WHERE polls.id = $1
+        GROUP BY choices.title , choices.description
+        ORDER BY sum(voter_choices.choice_rank) DESC`, [request.params.id],(error, results) => {
           if(error) {
             throw error;
           }
           response.render('results', {
             voterChoices: results.rows
           });
-
         }
     )
+
   });
+
+
 
   return router;
 }

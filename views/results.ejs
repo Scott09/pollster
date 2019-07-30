@@ -25,10 +25,37 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
 </head>
+
 <body>
+
     <%- include header.ejs %>
+
+
     <p>hello ,result page haha</p>
-    <p> <%= voterChoices %> </p>
+
+    <table>
+        <thead>
+          <th scope="col">Ranking</th>
+          <th scope="col">Choices</th>
+          <th scope="col">Description</th>
+
+        </thead>
+        <tbody>
+
+              <% for(let i = 0; i < voterChoices.length; i++) { %>
+                <tr>
+                  <td class = "ranking"><%= i  + 1%></td>
+                  <td class = "title"><%= voterChoices[i].title %></td>
+                  <td class = "description"><%= voterChoices[i].description %></td>
+
+                </tr>
+              <% } %>
+
+
+        </tbody>
+      </table>
+      <div><%= voterChoices.numbersOfVoters %></div>
+
 
 </body>
 </html>
