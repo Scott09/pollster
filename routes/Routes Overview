@@ -1,21 +1,21 @@
 CREATE SCREEN
 GET /poll/new # show the page to create a new poll
-POST /poll/new # creates a new poll
+POST /poll # creates a new poll
  - after, redirect them to thank you page OR popup WITH button redirects to submission
 
 SUBMIT SCREEN
- GET /vote/:id
+ GET /poll/:poll_id/votes/new
  - Link for submission for that poll
- POST /vote/:id
+ POST /poll/:poll_id/votes
  - Posts a submission for that poll
- GET /vote/thankyou
+ GET /poll/:poll_id/votes/thanks
  - Shows page thanking user for submission and has button "click here for poll results"
 
 RESULTS PAGE
-GET /results/:id # show a poll's results page
+GET /poll/:poll_id/results # show a poll's results page (or /poll/:poll_id)
 
 ADMIN PAGE
-GET /admin/:id # show's a poll's results page but with name's displayed
+GET /poll/:poll_id/admin (or /poll/:poll_id) # show's a poll's results page but with name's displayed
 - Names are vertically stacked, when you click on a name, responsive table drops down (like in Tweeter with compose tweet button)
 
 OPTIONAL FEATURES FOR LATER DISCUSSION
