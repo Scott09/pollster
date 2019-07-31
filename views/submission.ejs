@@ -3,11 +3,22 @@
   $( function() {
     $( "#sortable" ).sortable();
     $( "#sortable" ).disableSelection();
+    $('#submission').on('submit', (e) => {
+      let hidden = $('#choice-order');
+      let choices = $('#sortable').sortable('toArray', {
+        attribute: 'data-choice-id'
+      });
+      // in jQueryUI, to use a plugin on an element you do: $('#element').pluginName({options});
+      // To call functions related to that plugin, the format is always $('#element').pluginName(functionName, ...arguments);
+      hidden.val(choices.join(','));
+      return true;
+    });
   } );
   </script>
+<form method="POST" action="/polls/<%= poll.id %>/votes" id="submission">
 <div class="row" id="sortable">
   <%  for (let choice of poll.choices){ %>
-  <div class="card">
+  <div class="card" data-choice-id="<%= choice.id %>">
     <div class="card-body">
       <div><%= choice.title %></div>
       <small><%= choice.description %></small>
@@ -15,6 +26,9 @@
   </div>
   <% } %>
 </div>
-<button type="button" class="btn btn-primary">Submit</button>
+<input type="hidden" name="choices" value="" id="choice-order">
+<input type="text" name="name" value="" id="name" placeholder="Name">
+<button id="submit-button" type="submit" class="btn btn-primary">Submit</button>
+  </form>
 </body>
 </html>
