@@ -1,7 +1,7 @@
 // See: https://sass-lang.com/
 
 body {
-  background-color: #EEE;
+  background-color: black;
 
   h1 {
     color: #244751;
@@ -16,3 +16,23 @@ body {
  .navbar {
    width: 100%
  }
+
+ #indexbody {
+   background-color: lightgrey;
+ }
+
+ #indexbody {
+  font-family: 'Roboto Mono', monospace;
+ }
+
+ .container {
+  padding: 0px;
+ }
+
+ .jumbotron {
+   background-color: darkcyan;
+ }
+
+  #indexbutton {
+    text-align: center;
+}
