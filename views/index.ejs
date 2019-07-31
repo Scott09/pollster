@@ -6,67 +6,63 @@
 </head>
 
 <body id="indexbody">
-  
-  <div class = "container">
-  <%- include nav.ejs %>
-  <div class="jumbotron">
-    <h1 class="display-4"></h1>
-    <p class="lead">Let us help you make decisions with your friends</p>
-    <hr class="my-4">
-    <form action = "/polls/new" method="POST">
-      <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-          placeholder="example@example.com" name="email">
-      </div>
 
-      <div class="form-group">
-        <label for="examplename">Name</label>
-        <input type="text" class="form-control" id="examplename" placeholder="Enter name here" name="name">
-      </div>
-      <div class="form-check">
+  <div class="container">
 
-        <div class="form-group">
-          <label for="formquestion">Enter your question here</label>
-          <input type="text" class="form-control" id="formquestion" placeholder="Question?"
-            name="question">
-        </div>
-        <div class="form-group">
-          <label for="formquestion1">Choice 1</label>
-          <input type="text" class="form-control" id="formquestion1" placeholder=""
-            name="question1">
-        </div>
-        <div class="form-group">
-          <label for="description1">Choice 1 Description</label>
-          <input type="text" class="form-control" id="description1" placeholder=""
-            name="descriptionone">
-        </div>
-        <div class="form-group">
-          <label for="formquestion2">Choice 2</label>
-          <input type="text" class="form-control" id="formquestion2" placeholder=""
-            name="question2">
-        </div>
-        <div class="form-group">
-          <label for="description2">Choice 2 Description</label>
-          <input type="text" class="form-control" id="description2" placeholder=""
-            name="descriptiontwo">
-        </div>
-        <div class="form-group">
-          <label for="formquestion3">Choice 3</label>
-          <input type="text" class="form-control" id="formquestion3" placeholder=""
-            name="question3">
-        </div>
-        <div class="form-group">
-          <label for="description3">Choice 3 Description</label>
-          <input type="text" class="form-control" id="description3" placeholder=""
-            name="descriptionthree">
-        </div>
+    <%- include nav.ejs %>
 
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    <div class="jumbotron">
+      <p class="lead">Let us help you make decisions with your friends</p>
+      <hr class="my-4">
+      <form action="/polls/new" method="POST">
 
-  </div>
+        <div class="form-check">
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email address:</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+              placeholder="example@example.com" name="email">
+          </div>
+
+          <div class="form-group">
+            <label for="examplename">Name:</label>
+            <input type="text" class="form-control" id="examplename" placeholder="Enter name here" name="name">
+          </div>
+
+          <div class="form-group">
+            <label for="formquestion">Enter your question here :</label>
+            <input type="text" class="form-control" id="formquestion" placeholder="Question?" name="question">
+          </div>
+          <div class="form-group">
+            <label for="formquestion1">Choice 1</label>
+            <input type="text" class="form-control" id="formquestion1" placeholder="" name="question1">
+          </div>
+          <div class="form-group">
+            <label for="description1">Optional Description</label>
+            <input type="text" class="form-control" id="description1" placeholder="" name="descriptionone">
+          </div>
+          <div class="form-group">
+            <label for="formquestion2">Choice 2</label>
+            <input type="text" class="form-control" id="formquestion2" placeholder="" name="question2">
+          </div>
+          <div class="form-group">
+            <label for="description2">Optional Description</label>
+            <input type="text" class="form-control" id="description2" placeholder="" name="descriptiontwo">
+          </div>
+          <div class="form-group">
+            <label for="formquestion3">Choice 3</label>
+            <input type="text" class="form-control" id="formquestion3" placeholder="" name="question3">
+          </div>
+          <div class="form-group">
+            <label for="description3">Optional Description</label>
+            <input type="text" class="form-control" id="description3" placeholder="" name="descriptionthree">
+          </div>
+
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+    </div>
   </div>
 </body>
 
