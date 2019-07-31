@@ -71,3 +71,17 @@ const getPollAndChoicesByID = function(id) {
 };
 
 exports.getPollAndChoicesByID = getPollAndChoicesByID;
+
+const submitPollVote = function(pollID, voterName, choices) {
+  return pool.query(`INSERT INTO voters (poll_id, name) VALUES ($1, $2)RETURNING id`, [pollID, voterName])
+    .then(voter => {
+      let voterID = voter.rows[0].id;
+      let insertions = [];
+      for (let i = 0; i < choices.length; ++i) {
+        insertions.push(pool.query(`INSERT INTO voter_choices (voter_id, choice_id, choice_rank) VALUES ($1, $2, $3)`, [voterID, choices[i], i]));
+      }
+      return Promise.all(insertions);
+    });
+};
+
+exports.submitPollVote = submitPollVote;

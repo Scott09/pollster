@@ -71,6 +71,9 @@ progress {
   vertical-align: baseline;
 }
 
+#submit-button {
+  position: fixed
+}
 /**
  * Add the correct display in IE 10-.
  * 1. Add the correct display in IE.
@@ -319,10 +322,7 @@ button::-moz-focus-inner,
  * Restore the focus styles unset by the previous rule.
  */
 
-#sortable {
-  display: flex;
-  flex-direction: column;
-}
+
 
 button:-moz-focusring,
 [type="button"]:-moz-focusring,
