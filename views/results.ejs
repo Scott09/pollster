@@ -53,7 +53,6 @@
                 </tr>
               <% } %>
 
-
         </tbody>
       </table></div>
       <b class="voter_number">numbers of sumbission <%= voterNumber %></b>
@@ -65,37 +64,38 @@
         <br />
         Paste: <textarea rows="1" cols="30"></textarea>
        </div>
-
-
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        <script type="text/javascript">
-          google.charts.load("current", {packages:["corechart"]});
-          google.charts.setOnLoadCallback(drawChart);
-          function drawChart() {
-            var array = [[choice,vote]];
-            let array2 = [];
-           for(let i = 0; i < voterChoices.length; i++) {
-             array2 = [voterChoices[i].title,voterChoices[i].rank]
-             console.log(array2);
-             array.push(array2);
-           }return array;
+          <script type="text/javascript">
+            console.log('loaded!');
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
 
-            var data = google.visualization.arrayToDataTable(array);
+          function drawChart() {
+            const url = window.location.pathname;
+            fetch(`${url}/json`)
+              .then(res => res.json())
+              .then(myJson => {
+                const myList = [ ['choice', 'vote'] ].concat(JSON.parse(myJson).voterChoices.map(obj => [obj.title, +obj.choice_rank]));
+                console.log('my data', myList);
+                var data = google.visualization.arrayToDataTable(myList);
 
             var options = {
-              title: 'Ranking',
-              is3D: true,
+              title: 'My Daily Activities'
             };
+            var options = {
+                title: 'My Daily Activities',
+                is3D: true,
+              };
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
-            var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
             chart.draw(data, options);
+              });
           }
-        </script>
-
-
-        <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
-
-</body>
+      </script>
+    </head>
+    <body>
+      <div id="piechart" style="width: 900px; height: 500px;"></div>
+  </body>
 </html>
 
 

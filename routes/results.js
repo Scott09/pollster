@@ -6,9 +6,39 @@ module.exports = (db) => {
     response.render('results')
   });
 
+  router.get("/:id/json", (request, res) => {
+    db.query(
+      `SELECT choices.title,choices.description, count(voters.poll_id) as voterNumber, sum(voter_choices.choice_rank) as choice_rank
+        FROM  voter_choices
+        JOIN choices ON choices.id = voter_choices.choice_id
+        JOIN polls ON polls.id = choices.poll_id
+        RIGHT JOIN voters ON polls.id = voters.poll_id
+        WHERE polls.id = $1
+        GROUP BY choices.title , choices.description
+        ORDER BY sum(voter_choices.choice_rank) DESC`, [request.params.id],(error, results) => {
+          if(error) {
+            throw error;
+
+          }
+          db.query(`SELECT count(voters.name) as count
+          FROM voters
+          JOIN polls
+          ON polls.id = voters.poll_id
+          WHERE polls.id = $1`, [request.params.id], (error, data) => {
+            if (error) {
+              throw error;
+            }
+            res.json(JSON.stringify({voterChoices: results.rows}));
+
+
+        });
+      }
+    )
+  });
+
   router.get("/:id", (request, response) => {
     db.query(
-      `SELECT choices.title,choices.description, count(voters.poll_id) as voterNumber
+      `SELECT choices.title,choices.description, count(voters.poll_id) as voterNumber, sum(voter_choices.choice_rank) as choice_rank
         FROM  voter_choices
         JOIN choices ON choices.id = voter_choices.choice_id
         JOIN polls ON polls.id = choices.poll_id
@@ -32,9 +62,8 @@ module.exports = (db) => {
               voterChoices: results.rows,
               voterNumber: data.rows[0].count
           })
-
-          });
-        }
+        });
+      }
     )
   });
 
@@ -44,13 +73,17 @@ module.exports = (db) => {
 
 
 function Copy()
-      {
-          var Url = document.createElement("textarea");
-          Url.innerHTML = window.location.href;
-          Copied = Url.createTextRange();
-          Copied.execCommand("Copy");
-      }
+{
+    var Url = document.createElement("textarea");
+    Url.innerHTML = window.location.href;
+    Copied = Url.createTextRange();
+    Copied.execCommand("Copy");
+}
 exports.Copy = Copy;
+
+
+
+
 
 
 
