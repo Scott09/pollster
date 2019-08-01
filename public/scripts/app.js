@@ -1,5 +1,6 @@
 
 $(() => {
+
   $('#CopyButton').click(()=> {
     console.log('hello');
 
@@ -17,4 +18,5 @@ $(() => {
     $('#Copy').remove();
     alert("Copied");
   })
-})
+});
+
