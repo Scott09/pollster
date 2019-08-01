@@ -1,8 +1,8 @@
-.results_table {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  };
+// .results_table {
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   };
   .hello_result {
     margin-top: 50px;
     display: flex;
@@ -12,16 +12,17 @@
   }
 
   .voter_number {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 20px;
+    display: flex;
+    margin-top: 20px;
+    justify-content: center;
+    align-content: center;
+    font-size: 25px;
   }
 
   table,  td {
     border: 1px solid black;
     padding: 15px;
-    width:70%;
+    width:50%;
 
   }
 
@@ -36,5 +37,13 @@ table th {
     height :20px;
     color: white;
     background-color: black;
+  }
+
+.voter_name {
+    display: flex;
+    margin-top: 10px;
+    justify-content: center;
+    align-content: center;
+    font-size: 25px;
   }
 

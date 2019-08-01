@@ -55,18 +55,9 @@
 
         </tbody>
       </table></div>
-      <b class="voter_number">numbers of sumbission <%= voterNumber %></b>
-      <a href="https://www.facebook.com"><img src="https://img.icons8.com/dusk/64/000000/facebook-new--v2.png"></a>
-      <a href="https://www.twitter.com"><img src="https://img.icons8.com/dusk/64/000000/twitter-circled.png"></a>
-      <img src="https://img.icons8.com/dusk/64/000000/open-in-browser.png">
-      <div>
-        <input type="button" value="Copy Url" onclick="Copy();" />
-        <br />
-        Paste: <textarea rows="1" cols="30"></textarea>
-       </div>
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
           <script type="text/javascript">
-            console.log('loaded!');
+            // console.log('loaded!');
             google.charts.load('current', {'packages':['corechart']});
             google.charts.setOnLoadCallback(drawChart);
 
@@ -76,14 +67,14 @@
               .then(res => res.json())
               .then(myJson => {
                 const myList = [ ['choice', 'vote'] ].concat(JSON.parse(myJson).voterChoices.map(obj => [obj.title, +obj.choice_rank]));
-                console.log('my data', myList);
+                // console.log('my data', myList);
                 var data = google.visualization.arrayToDataTable(myList);
 
             var options = {
               title: 'My Daily Activities'
             };
             var options = {
-                title: 'My Daily Activities',
+                title: 'RANKING PIE CHART',
                 is3D: true,
               };
             var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -92,6 +83,26 @@
               });
           }
       </script>
+      <b class="voter_number">numbers of sumbission <%= voterNumber %></b>
+      <br >
+      <div class="voter_name">
+      <b >Voter name:</b>
+      <% for(let i = 0; i < voter.length; i++) { %>
+        <b ><%= voter[i].name  %>  </b>
+        <% } %>
+      </div>
+      </br>
+      <!-- <a href="https://www.facebook.com"><img src="https://img.icons8.com/dusk/64/000000/facebook-new--v2.png"></a>
+      <a href="https://www.twitter.com"><img src="https://img.icons8.com/dusk/64/000000/twitter-circled.png"></a> -->
+      <!-- <img src="https://img.icons8.com/dusk/64/000000/open-in-browser.png"> -->
+
+
+      <div>
+          <button id= "CopyButton" class="btn btn-primary" type="button" value="Copy URL to share!" >
+              Copy URL to share!</button>
+        <br />
+       </div>
+
     </head>
     <body>
       <div id="piechart" style="width: 900px; height: 500px;"></div>

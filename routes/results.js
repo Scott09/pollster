@@ -58,11 +58,21 @@ module.exports = (db) => {
             if (error) {
               throw error;
             }
+            db.query(`SELECT  voters.name as name
+          FROM voters
+          JOIN polls
+          ON polls.id = voters.poll_id
+          WHERE polls.id = $1`, [request.params.id], (error, d) => {
+            if (error) {
+              throw error;
+            }
             response.render('results', {
               voterChoices: results.rows,
-              voterNumber: data.rows[0].count
+              voterNumber: data.rows[0].count,
+              voter:d.rows
           })
         });
+      })
       }
     )
   });
@@ -72,14 +82,8 @@ module.exports = (db) => {
 
 
 
-function Copy()
-{
-    var Url = document.createElement("textarea");
-    Url.innerHTML = window.location.href;
-    Copied = Url.createTextRange();
-    Copied.execCommand("Copy");
-}
-exports.Copy = Copy;
+
+
 
 
 
