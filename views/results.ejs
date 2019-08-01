@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,8 @@
   <title>Document</title>
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/ranking_page.css" type="text/css" >
+
+
 
   <!-- BOOTSTRAP 4 CSS  -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -26,19 +27,20 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/styles/ranking_page.css" type="text/css">
 </head>
 
 <body>
 
-    <%- include nav.ejs %>
-    <!-- <img src="https://img.icons8.com/officexs/16/000000/dancing.png">
+  <%- include nav.ejs %>
+  <!-- <img src="https://img.icons8.com/officexs/16/000000/dancing.png">
     <img src="https://img.icons8.com/color/48/000000/dancing.png">
     <img src="https://img.icons8.com/color/144/000000/dancing.png"> -->
-    <p class= "hello_result">hello, result page</p>
-    <b class= "question"><%=voter[0].poll %></b>
-    <div class="table_number_name">
+  <p class="hello_result">hello, result page</p>
+  <b class="question"><%=voter[0].poll %></b>
+  <div class="table_number_name">
     <div class="results_table">
-    <table >
+      <table>
         <thead>
           <th scope="col">Ranking </th>
           <th scope="col">Choices </th>
@@ -47,65 +49,71 @@
         </thead>
         <tbody>
 
-              <% for(let i = 0; i < voterChoices.length; i++) { %>
-                <tr>
-                  <td class = "ranking" style="width:30%;" ><%= i + 1%></td>
-                  <td class = "title" style="width:30%;"><%= voterChoices[i].title %></td>
-                  <td class = "description" style="width:40%;"><%= voterChoices[i].description %></td>
+          <% for(let i = 0; i < voterChoices.length; i++) { %>
+          <tr>
+            <td class="ranking" style="width:30%;"><%= i + 1%></td>
+            <td class="title" style="width:30%;"><%= voterChoices[i].title %></td>
+            <td class="description" style="width:40%;"><%= voterChoices[i].description %></td>
 
-                </tr>
-              <% } %>
+          </tr>
+          <% } %>
 
         </tbody>
-      </table></div>
+      </table>
+    </div>
 
-      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-      <script type="text/javascript">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
 
-        google.charts.load('current', {'packages':['corechart']});
-        google.charts.setOnLoadCallback(drawChart);
+      google.charts.load('current', { 'packages': ['corechart'] });
+      google.charts.setOnLoadCallback(drawChart);
 
       function drawChart() {
         const url = window.location.pathname;
         fetch(`${url}/json`)
           .then(res => res.json())
           .then(myJson => {
-            const myList = [ ['choice', 'vote'] ].concat(JSON.parse(myJson).voterChoices.map(obj => [obj.title, +obj.choice_rank]));
+            const myList = [['choice', 'vote']].concat(JSON.parse(myJson).voterChoices.map(obj => [obj.title, +obj.choice_rank]));
             // console.log('my data', myList);
             var data = google.visualization.arrayToDataTable(myList);
 
 
-        var options = {
-          chartArea:{left:'1%',top:0,width:'75%',height:'100%'},
-            is3D: true,
-          };
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            var options = {
+              chartArea: { left: '1%', top: 0, width: '75%', height: '100%' },
+              is3D: true,
+              backgroundColor: 'transparent',
 
-        chart.draw(data, options);
+            };
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+            chart.draw(data, options);
           });
       }
-  </script>
-  <div id="piechart" ></div>
+    </script>
+    <div id="piechart"></div>
 
-</div></div>
-      <!-- </br> -->
+  </div>
+  </div>
+  <!-- </br> -->
+
+  <b class="voter_number">Numbers of Sumbission: <%= voterNumber %></b>
+  <!-- <br > -->
+  <div class="voter_name">
+    <b>PollParticipants:</b>
+
+
+    <% for(let i = 0; i < voter.length; i++) { %>
+    <col class="voterName" style="width:30%;"> &nbsp;<%= voter[i].name  %> &nbsp;&nbsp; </col>
+    <% } %>
+
+  </div>
+  <div>
       <!-- <a href="https://www.facebook.com"><img src="https://img.icons8.com/dusk/64/000000/facebook-new--v2.png"></a>
       <a href="https://www.twitter.com"><img src="https://img.icons8.com/dusk/64/000000/twitter-circled.png"></a> -->
       <!-- <img src="https://img.icons8.com/dusk/64/000000/open-in-browser.png"> -->
-      <b class="voter_number">Numbers of Sumbission: <%= voterNumber %></b>
-      <!-- <br > -->
-      <div class="voter_name">
-      <b >PollParticipants:</b>
+      <button id="CopyButton" class="btn btn-primary" type="button" value="Copy URL to share!">
+        Copy URL to share!</button>
+  </div>
+</body>
 
-
-      <% for(let i = 0; i < voter.length; i++) { %>
-        <col class = "voterName" style="width:30%;" > &nbsp;<%= voter[i].name  %> &nbsp;&nbsp; </col>
-        <% } %>
-
-          <button id= "CopyButton" class="btn btn-primary" type="button" value="Copy URL to share!" >
-              Copy URL to share!</button>
-
-    </head>
 </html>
-
-
