@@ -59,9 +59,9 @@ const addChoice = function(choice) {
 exports.addChoice = addChoice;
 
 const getPollAndChoicesByID = function(id) {
-  return pool.query(`SELECT * FROM polls WHERE id = 1`)
+  return pool.query(`SELECT * FROM polls WHERE id = ${id}`)
     .then((poll) => {
-      return pool.query(`SELECT * FROM choices WHERE poll_id = 1`)
+      return pool.query(`SELECT * FROM choices WHERE poll_id = ${id}`)
         .then(choices => {
         // {choices} == {choices: choices}
           console.log(poll.row);
@@ -77,8 +77,9 @@ const submitPollVote = function(pollID, voterName, choices) {
     .then(voter => {
       let voterID = voter.rows[0].id;
       let insertions = [];
+      let count = 3;
       for (let i = 0; i < choices.length; ++i) {
-        insertions.push(pool.query(`INSERT INTO voter_choices (voter_id, choice_id, choice_rank) VALUES ($1, $2, $3)`, [voterID, choices[i], i]));
+        insertions.push(pool.query(`INSERT INTO voter_choices (voter_id, choice_id, choice_rank) VALUES ($1, $2, $3)`, [voterID, choices[i], count - i]));
       }
       return Promise.all(insertions);
     });
