@@ -1,5 +1,6 @@
 const pool = require('../lib/db');
 
+
 //Links???
 const addPoll = function(poll) {
   return new Promise((resolve,reject) => {
@@ -57,6 +58,7 @@ const addChoice = function(choice) {
 };
 
 exports.addChoice = addChoice;
+const util = require('util');
 
 const getPollAndChoicesByID = function(id) {
   return pool.query(`SELECT * FROM polls WHERE id = ${id}`)
@@ -64,8 +66,13 @@ const getPollAndChoicesByID = function(id) {
       return pool.query(`SELECT * FROM choices WHERE poll_id = ${id}`)
         .then(choices => {
         // {choices} == {choices: choices}
-          console.log(poll.row);
-          return Object.assign({}, poll.rows[0], { choices: choices.rows });
+          let result = {};
+          Object.assign(result, poll.rows[0], { choices: [] });
+          for (let choice of choices.rows) {
+            result.choices.push(Object.assign({}, choice));
+          }
+          console.log(result);
+          return result;
         });
     });
 };
@@ -86,3 +93,4 @@ const submitPollVote = function(pollID, voterName, choices) {
 };
 
 exports.submitPollVote = submitPollVote;
+
