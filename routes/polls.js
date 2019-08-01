@@ -1,5 +1,6 @@
 const express = require('express');
 const router  = express.Router();
+const { mailgunCreate } = require('../lib/mail');
 
 module.exports = (db) => {
 
@@ -10,6 +11,7 @@ module.exports = (db) => {
   router.get("/thankyou", (request, response) => {
     response.render("thankyou");
   });
+
   
   let pollCreator = null;
   let choicePollId = null;
@@ -24,6 +26,8 @@ module.exports = (db) => {
       }
       pollCreator = request.body.name;
       choicePollId = results.rows[0].id;
+
+
       
 
         db.query(insertChoice, [choicePollId, request.body.descriptionone, request.body.question1], (error, results) => {
