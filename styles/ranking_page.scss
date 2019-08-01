@@ -10,20 +10,18 @@
     align-items: center;
     font-size: 40px;
   }
+.question {
+  font-size:25px;
+  margin-left: 10%;
+}
 
-  .voter_number {
-    display: flex;
-    margin-top: 20px;
-    justify-content: center;
-    align-content: center;
-    font-size: 25px;
-  }
 
-  table,  td {
-    border: 1px solid black;
-    padding: 15px;
-    width:50%;
-
+  table, td {
+    border: 1px solid gray;
+    padding: 10px;
+    margin-left: 40%;
+    font-size: 20px;
+    width:300px;
   }
 
 table tr:nth-child(even) {
@@ -34,16 +32,50 @@ table tr:nth-child(odd) {
   }
 
 table th {
-    height :20px;
-    color: white;
-    background-color: black;
+    height :40px;
+    color: rgb(8, 5, 5);
+    background-color: #eee;
   }
-
-.voter_name {
+  .voter_number {
     display: flex;
-    margin-top: 10px;
-    justify-content: center;
-    align-content: center;
+    margin-top: 40px;
+    margin-left:12%;
     font-size: 25px;
   }
+.voter_name {
+    display: flex;
+    // margin-top: 10px;
+    margin-left: 12%;
+    font-size: 25px;
+    margin-bottom: 500px;
+  }
 
+.table_number_name {
+  display: flex;
+  margin-top: 25px;
+  // margin-left :0%;
+  width:120%;
+
+}
+#piechart {
+  width: 50%;
+  margin-left: 20%;
+  -webkit-animation: fadein 3s;
+}
+@-webkit-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+// #piechart:hover
+// {
+//   -webkit-transform: scale(1.3);
+//   -ms-transform: scale(1.3);
+//   transform: scale(1.3);
+//     }
+.CopyButton {
+  // display: block;
+
+  // margin-left:10%;
+
+}

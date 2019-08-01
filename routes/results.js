@@ -58,7 +58,7 @@ module.exports = (db) => {
             if (error) {
               throw error;
             }
-            db.query(`SELECT  voters.name as name
+            db.query(`SELECT  voters.name as name, polls.question as poll
           FROM voters
           JOIN polls
           ON polls.id = voters.poll_id
