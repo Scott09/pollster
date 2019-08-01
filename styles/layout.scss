@@ -1,7 +1,7 @@
 // See: https://sass-lang.com/
 
 body {
-  background-color: black;
+  background: darkgray;
 
   h1 {
     color: #244751;
@@ -17,9 +17,6 @@ body {
    width: 100%
  }
 
- #indexbody {
-   background-color: lightgrey;
- }
 
  #indexbody {
   font-family: 'Roboto Mono', monospace;
@@ -33,6 +30,15 @@ body {
    background-color: darkcyan;
  }
 
-  #indexbutton {
-    text-align: center;
+
+ #indexbutton {
+  text-align: center;
+  align-content: center;
 }
+
+#createpollbutton {
+  text-align: right;
+  align-content: right;
+}
+
+ 
