@@ -26,8 +26,8 @@ module.exports = (db) => {
       }
       pollCreator = request.body.name;
       choicePollId = results.rows[0].id;
-      let adminLink = `localhost:3000/results/${choicePollId}`;
-      let submissionLink = `localhost:3000/polls/${choicePollId}/votes/new`
+      let adminLink = `http://localhost:8080/results/${choicePollId}`;
+      let submissionLink = `http://localhost:8080/polls/${choicePollId}/votes/new`
       let myEmail = request.body.email;
 
       const mydata = {
