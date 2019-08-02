@@ -1,6 +1,7 @@
 <%- include header.ejs %>
 <body>
 <%- include nav.ejs %>
+<div class="container" id="selectables">
  <script>
   $( function() {
     $( "#sortable" ).sortable();
@@ -17,6 +18,8 @@
     });
   } );
   </script>
+<h2> <%= poll.question %> </h2>
+<h4> Rank your choices from most favourite to least favourite! </h4>
 <form method="POST" action="/polls/<%= poll.id %>/votes" id="submission">
 <div class="row" id="sortable">
   <%  for (let choice of poll.choices){ %>
@@ -29,8 +32,14 @@
   <% } %>
 </div>
 <input type="hidden" name="choices" value="" id="choice-order">
+<div class="name">
+<h4> Your name </h4>
 <input type="text" name="name" value="" id="name" placeholder="Name">
+</div>
+<div class="div-submit-button">
 <button id="submit-button" type="submit" class="btn btn-primary">Submit</button>
+</div>
   </form>
+  </div>
 </body>
 </html>
