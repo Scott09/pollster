@@ -36,7 +36,7 @@
   <!-- <img src="https://img.icons8.com/officexs/16/000000/dancing.png">
     <img src="https://img.icons8.com/color/48/000000/dancing.png">
     <img src="https://img.icons8.com/color/144/000000/dancing.png"> -->
-  <p class="hello_result">hello, result page</p>
+  <p class="hello_result">Results</p>
   <b class="question"><%=voter[0].poll %></b>
   <div class="table_number_name">
     <div class="results_table">
@@ -51,9 +51,9 @@
 
           <% for(let i = 0; i < voterChoices.length; i++) { %>
           <tr>
-            <td class="ranking" style="width:30%;"><%= i + 1%></td>
-            <td class="title" style="width:30%;"><%= voterChoices[i].title %></td>
-            <td class="description" style="width:40%;"><%= voterChoices[i].description %></td>
+            <td class="ranking" ><%= i + 1%></td>
+            <td class="title" ><%= voterChoices[i].title %></td>
+            <td class="description" ><%= voterChoices[i].description %></td>
 
           </tr>
           <% } %>
@@ -99,7 +99,7 @@
   <b class="voter_number">Numbers of Sumbission: <%= voterNumber %></b>
   <!-- <br > -->
   <div class="voter_name">
-    <b>PollParticipants:</b>
+    <b>Poll Participants:</b>
 
 
     <% for(let i = 0; i < voter.length; i++) { %>
