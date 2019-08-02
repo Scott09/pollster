@@ -23,7 +23,7 @@ router.post("/", (req, resp) => {
       return mailgunSubmit(poll.creator_email, `http://localhost:8080/poll/${req.params.poll_id}/results`);
     })
     .then(() => {
-      resp.send("ok");
+      resp.redirect(`/results/${req.params.poll_id}`);
     }).catch(err => {
       console.trace(err);
     });

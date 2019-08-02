@@ -1,22 +1,24 @@
 // See: https://sass-lang.com/
 
 body {
-
   background: url('../images/mountains.jpg');
   color: lightgray;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
+
+}
 
 
   h1 {
     color: #244751;
   }
-}
+
 
 #sortable {
   display: flex;
   flex-direction: column;
+ }
+
+ .ui-sortable .card-body {
+   color: black;
  }
 
  .navbar {
