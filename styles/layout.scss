@@ -3,14 +3,34 @@
 body {
   background: url('../images/mountains.jpg');
   color: lightgray;
-
 }
-
 
   h1 {
     color: #244751;
   }
 
+#selectables {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+#question {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+#prompt {
+  margin-bottom: 20px;
+}
+
+#namevalue {
+  margin-top:40px;
+  margin-bottom: 10px;
+}
+
+.div-submit-button{
+  margin-top:20px;
+}
 
 #sortable {
   display: flex;
