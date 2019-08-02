@@ -1,6 +1,7 @@
 const express = require('express');
 const router  = express.Router();
-const { mailgunCreate } = require('../lib/mail');
+const mailgun = require('mailgun-js')({apiKey: process.env.MAILGUN_API_KEY, domain: process.env.MAILGUN_DOMAIN});
+
 
 module.exports = (db) => {
 
@@ -11,7 +12,6 @@ module.exports = (db) => {
   router.get("/thankyou", (request, response) => {
     response.render("thankyou");
   });
-
   
   let pollCreator = null;
   let choicePollId = null;
@@ -26,8 +26,29 @@ module.exports = (db) => {
       }
       pollCreator = request.body.name;
       choicePollId = results.rows[0].id;
+      let adminLink = `localhost:3000/results/${choicePollId}`;
+      let submissionLink = `localhost:3000/polls/${choicePollId}/votes/new`
+      let myEmail = request.body.email;
 
+      const mydata = {
+        to: myEmail,
+        from: 'user <scottappleton09@gmail.com>',
+        subject: 'Poll created',
+        text: `
+        Hi there,
 
+        Here are the results: ${adminLink}
+        And here is the submission link: ${submissionLink}
+
+        Thanks!
+
+        Pollster`
+      };
+
+      mailgun.messages().send(mydata, (error, body) => {
+        console.log(error);
+        console.log(body);
+      });
       
 
         db.query(insertChoice, [choicePollId, request.body.descriptionone, request.body.question1], (error, results) => {
