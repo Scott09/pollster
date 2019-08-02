@@ -1,10 +1,6 @@
 const express = require('express');
 const router  = express.Router();
-const API_KEY = 'b4d469502854c3c180a41409e0823600-f877bd7a-9c637a3a';
-const DOMAIN = 'pollster.dns-cloud.net';
-const mailgun = require('mailgun-js')({apiKey: API_KEY, domain: DOMAIN});
-
-
+const mailgun = require('mailgun-js')({apiKey: process.env.MAILGUN_API_KEY, domain: process.env.MAILGUN_DOMAIN});
 
 
 module.exports = (db) => {
@@ -16,7 +12,6 @@ module.exports = (db) => {
   router.get("/thankyou", (request, response) => {
     response.render("thankyou");
   });
-
   
   let pollCreator = null;
   let choicePollId = null;
