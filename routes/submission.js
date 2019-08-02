@@ -20,7 +20,7 @@ router.post("/", (req, resp) => {
     .then(() => getPollAndChoicesByID(req.params.poll_id))
     .then(poll => {
       //console.log(poll);
-      return mailgunSubmit(poll.creator_email, `http://localhost:8080/poll/${req.params.poll_id}/results`);
+      return mailgunSubmit(poll.creator_email, `http://localhost:8080/results/${req.params.poll_id}`);
     })
     .then(() => {
       resp.send("ok");
